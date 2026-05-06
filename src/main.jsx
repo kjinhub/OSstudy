@@ -438,32 +438,6 @@ const slides = [
     note: '코드 줄, 변수 값, flag 배열, 임계 구역 상태를 한 단계씩 따라가며 데커 알고리즘의 동작을 확인합니다.',
   },
   {
-    title: '상황 1: 혼자 들어가려 할 때',
-    body: <Scenario title="P0만 관심 있음" lines={['P0: flag[0] = true', 'P1: flag[1] = false', 'P0는 while(flag[1])에 걸리지 않음', 'turn과 관계없이 바로 임계 구역 진입']} />,
-    note: '상대가 관심 없으면 turn은 중요하지 않습니다. 이것이 turn만 사용한 엄격한 교대보다 나은 점입니다.',
-  },
-  {
-    title: '상황 2: 동시에 들어가려 할 때',
-    body: <Scenario title="flag[0] = true && flag[1] = true" lines={['둘 다 상대방 flag를 보고 충돌을 감지', 'turn이 우선권을 결정', '우선권이 없는 쪽은 자기 flag를 false로 내림', '우선권이 있는 쪽은 상대 flag가 false가 되어 임계 구역 진입']} />,
-    note: '충돌 상황에서 turn이 없으면 deadlock이나 livelock으로 빠질 수 있습니다.',
-  },
-  {
-    title: '상황 3: 임계 구역을 나올 때',
-    body: <Scenario title="unlock(i)" lines={['turn = j', 'flag[i] = false', '상대방에게 다음 우선권을 넘김', '한 프로세스가 계속 독점하지 못하게 제한 대기를 만족']} />,
-    note: 'unlock에서 turn을 상대에게 넘기는 부분이 bounded waiting과 연결됩니다.',
-  },
-  {
-    title: 'Java 구현에서 주의할 점',
-    body: (
-      <BigClaim
-        icon={<Cpu />}
-        claim="일반 boolean[]과 int만 쓰면 Java 메모리 모델에서 안전하다고 보기 어렵다"
-        details={['AtomicBoolean은 원자적 갱신과 volatile 계열 메모리 효과를 제공', 'volatile int turn은 스레드 간 가시성을 보장하는 설명용 선택', 'Thread.onSpinWait()은 busy waiting 중 CPU에 스핀 힌트를 준다']}
-      />
-    ),
-    note: '고전 알고리즘의 가정과 현대 언어의 메모리 모델은 다릅니다.',
-  },
-  {
     title: '장점 비교',
     body: <AlgorithmProsComparison />,
     note: '데커 알고리즘의 장점은 최초의 순수 소프트웨어 해법이라는 역사성과 flag/turn 개념을 잘 보여준다는 점입니다.',
