@@ -1,0 +1,47 @@
+# Dependencies
+node_modules/
+
+# Build output
+dist/
+build/
+.vite/
+
+# Environment variables and local secrets
+.env
+.env.*
+!.env.example
+!.env.sample
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+# Test and coverage output
+coverage/
+.nyc_output/
+
+# Local editor and OS files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Local tool caches
+.cache/
+.parcel-cache/
+.eslintcache
+
+# Hosting provider local folders
+.vercel/
+.netlify/
+
+# Temporary files
+tmp/
+temp/
+*.tmp

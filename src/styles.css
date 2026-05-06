@@ -1,0 +1,3197 @@
+:root {
+  --bg: #f2f4f6;
+  --ink: #191f28;
+  --muted: #4e5968;
+  --line: #e5e8eb;
+  --panel: #ffffff;
+  --red: #f04452;
+  --green: #00a661;
+  --blue: #3182f6;
+  --gold: #ffb800;
+  --charcoal: #111827;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Inter, Pretendard, "Noto Sans KR", system-ui, -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+button {
+  border: 1px solid var(--line);
+  background: var(--panel);
+  color: var(--ink);
+  display: inline-grid;
+  place-items: center;
+  cursor: pointer;
+}
+
+.deck {
+  min-height: 100vh;
+  display: grid;
+  place-items: center;
+  padding: 12px;
+}
+
+.slide {
+  position: relative;
+  width: min(calc(100vw - 24px), calc((100vh - 78px) * 16 / 9));
+  height: min(calc(100vh - 78px), calc((100vw - 24px) * 9 / 16));
+  aspect-ratio: 16 / 9;
+  background: var(--panel);
+  border: 1px solid var(--line);
+  box-shadow: 0 22px 70px rgba(30, 36, 44, 0.16);
+  padding: 34px 44px 24px;
+  display: grid;
+  grid-template-rows: auto auto 1fr auto;
+  gap: 14px;
+  overflow: hidden;
+}
+
+.pdfDownloadButton {
+  position: absolute;
+  right: 44px;
+  top: 72px;
+  z-index: 4;
+  min-height: 44px;
+  border: 1px solid #d6e7ff;
+  border-radius: 999px;
+  padding: 0 18px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #1b64da;
+  background: #eff6ff;
+  box-shadow: 0 12px 24px rgba(49, 130, 246, 0.12);
+  font-size: 15px;
+  font-weight: 900;
+}
+
+.pdfDownloadButton:hover {
+  background: #dbeafe;
+  transform: translateY(-1px);
+}
+
+.printDeck {
+  display: none;
+}
+
+.slideTop,
+.speakerNote {
+  display: flex;
+  justify-content: space-between;
+  color: var(--muted);
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.speakerNote {
+  border-top: 1px solid var(--line);
+  padding-top: 10px;
+  line-height: 1.5;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+.slide h2 {
+  font-size: 46px;
+  line-height: 1.1;
+  letter-spacing: 0;
+  font-weight: 900;
+}
+
+.slideBody {
+  min-height: 0;
+  overflow: hidden;
+}
+
+.heroGrid,
+.twoColumn,
+.incrementGrid,
+.attemptDetail,
+.compareGrid,
+.animationWrap {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 28px;
+  align-items: center;
+}
+
+.slide.hero {
+  padding: 36px 48px 24px;
+}
+
+.slide.hero .slideTop {
+  align-items: center;
+  min-height: 22px;
+}
+
+.slide.hero .speakerNote {
+  font-size: 14px;
+}
+
+.heroGrid {
+  grid-template-columns: minmax(0, 1.08fr) minmax(0, 1fr);
+  gap: 38px;
+}
+
+.heroCopy h1 {
+  font-size: 61px;
+  line-height: 1.04;
+  letter-spacing: 0;
+  margin-bottom: 26px;
+  font-weight: 950;
+  word-break: keep-all;
+}
+
+.heroCopy p,
+.bigClaim p,
+.finalSummary p,
+.finalSummary blockquote {
+  font-size: 25px;
+  line-height: 1.55;
+}
+
+.heroCopy p {
+  max-width: 660px;
+  color: #111923;
+  font-weight: 560;
+  line-height: 1.58;
+  word-break: keep-all;
+}
+
+.racePanel {
+  position: relative;
+  min-height: 360px;
+  border: 1px solid var(--line);
+  background:
+    linear-gradient(90deg, rgba(45,111,159,0.08), transparent 45%),
+    linear-gradient(270deg, rgba(185,77,66,0.08), transparent 45%);
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  place-items: center;
+  overflow: hidden;
+}
+
+.racePanel.compact {
+  min-height: 430px;
+}
+
+.bankPanel {
+  position: relative;
+  min-height: 390px;
+  border: 1px solid #c9c0b0;
+  background:
+    linear-gradient(90deg, rgba(36,123,101,0.12), rgba(255,253,248,0.74) 48%, rgba(189,70,60,0.11)),
+    #fbf8f0;
+  border-radius: 8px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1.04fr) minmax(0, 1fr);
+  gap: 22px;
+  place-items: center;
+  padding: 40px 34px 70px;
+  overflow: hidden;
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.72), 0 16px 38px rgba(32, 44, 56, 0.1);
+}
+
+.bankPanel.compact {
+  min-height: 470px;
+}
+
+.bankProcess,
+.bankAccount {
+  width: 178px;
+  height: 178px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 18px;
+  border: 1px solid rgba(32,44,56,0.08);
+  box-shadow: 0 14px 30px rgba(32, 44, 56, 0.11);
+}
+
+.bankProcess {
+  background: #e5f2ec;
+  color: var(--green);
+}
+
+.bankProcess.p1 {
+  background: #f4dfdc;
+  color: var(--red);
+}
+
+.bankProcess strong {
+  font-size: 36px;
+  line-height: 1;
+}
+
+.bankProcess span {
+  font-size: 19px;
+  font-weight: 850;
+}
+
+.bankProcess b {
+  font-size: 28px;
+  line-height: 1;
+}
+
+.bankAccount {
+  background: var(--charcoal);
+  color: white;
+  width: 190px;
+  height: 190px;
+  border-color: rgba(255,255,255,0.12);
+  box-shadow: 0 18px 38px rgba(32, 44, 56, 0.24);
+}
+
+.bankAccount span {
+  font-size: 21px;
+  font-weight: 850;
+}
+
+.bankAccount strong {
+  font-size: 50px;
+  line-height: 1;
+}
+
+.bankAccount em {
+  font-style: normal;
+  color: #f4d8a2;
+  font-weight: 850;
+  font-size: 17px;
+}
+
+.bankResult {
+  position: absolute;
+  bottom: 38px;
+  padding: 13px 20px;
+  background: #f8e7d0;
+  color: #7a4e0f;
+  border-radius: 8px;
+  font-weight: 900;
+  border: 1px solid #efd2a7;
+  box-shadow: 0 8px 18px rgba(126, 88, 32, 0.12);
+}
+
+.processor,
+.sharedCounter {
+  width: 150px;
+  height: 150px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  font-size: 34px;
+  font-weight: 800;
+}
+
+.processor.p0 {
+  background: #dceaf2;
+  color: var(--blue);
+}
+
+.processor.p1 {
+  background: #f1dfdc;
+  color: var(--red);
+}
+
+.sharedCounter {
+  background: var(--charcoal);
+  color: white;
+  text-align: center;
+  font-size: 20px;
+}
+
+.sharedCounter strong {
+  font-size: 52px;
+}
+
+.raceArrow,
+.lostUpdate {
+  position: absolute;
+  font-weight: 800;
+  color: var(--muted);
+}
+
+.raceArrow.left {
+  left: 190px;
+  top: 110px;
+}
+
+.raceArrow.right {
+  right: 190px;
+  top: 110px;
+}
+
+.lostUpdate {
+  bottom: 44px;
+  padding: 12px 18px;
+  background: #f8e7d0;
+  color: #8c5e16;
+  border-radius: 8px;
+}
+
+.agendaList {
+  margin: 20px 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 18px;
+  counter-reset: agenda;
+}
+
+.agendaList li {
+  counter-increment: agenda;
+  font-size: 28px;
+  padding: 20px 24px;
+  border-left: 6px solid var(--green);
+  background: #eef6f1;
+  border-radius: 8px;
+}
+
+.agendaList li::before {
+  content: counter(agenda, decimal-leading-zero);
+  margin-right: 18px;
+  color: var(--green);
+  font-weight: 900;
+}
+
+.textBlock,
+.definitionStack,
+.variableCard,
+.attemptText,
+.statePanel,
+.scenario,
+.bigClaim,
+.tableWrap {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 24px;
+  background: #fffefa;
+}
+
+.iconBadge,
+.bigIcon {
+  width: 54px;
+  height: 54px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  color: white;
+  background: var(--green);
+  margin-bottom: 18px;
+}
+
+.bigIcon {
+  width: 70px;
+  height: 70px;
+}
+
+.textBlock h3,
+.attemptText h3,
+.variableCard h3,
+.scenario h3 {
+  font-size: 28px;
+  margin-bottom: 12px;
+}
+
+.textBlock p,
+.definitionStack span,
+.attemptText p,
+.variableCard p,
+.scenario p,
+.riskList li,
+.benefitGrid p,
+.modernGrid p,
+.compareGrid p {
+  font-size: 21px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.definitionStack {
+  display: grid;
+  gap: 16px;
+}
+
+.definitionStack div {
+  display: grid;
+  gap: 6px;
+}
+
+.definitionStack strong {
+  font-size: 24px;
+}
+
+.microSteps {
+  display: grid;
+  gap: 18px;
+}
+
+.microSteps div {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: 28px;
+  font-weight: 800;
+}
+
+.microSteps span,
+.timeline span,
+.scenario span {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--blue);
+  color: white;
+  display: inline-grid;
+  place-items: center;
+  flex: 0 0 auto;
+  font-weight: 900;
+}
+
+.microSteps p {
+  color: var(--red);
+  font-weight: 800;
+  font-size: 23px;
+  line-height: 1.55;
+  margin-top: 12px;
+}
+
+.bankSlide,
+.criticalIntro {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.bankTableWrap,
+.criticalRule {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 22px;
+  background: #fffefa;
+}
+
+.codeLine {
+  background: #1f2a32;
+  color: #edf7f5;
+  border-radius: 8px;
+  padding: 15px 18px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 22px;
+  margin-bottom: 14px;
+}
+
+.bankTable {
+  font-size: 17px;
+  margin-bottom: 14px;
+}
+
+.bankTable th,
+.bankTable td {
+  padding: 10px 12px;
+}
+
+.bankTableWrap p {
+  color: var(--red);
+  font-size: 20px;
+  line-height: 1.45;
+  font-weight: 800;
+}
+
+.criticalRule {
+  display: grid;
+  gap: 22px;
+}
+
+.criticalRule h3 {
+  font-size: 30px;
+}
+
+.criticalRule p {
+  color: var(--muted);
+  font-size: 24px;
+  line-height: 1.55;
+}
+
+.lockVisual {
+  display: grid;
+  grid-template-columns: 1fr 1.25fr 1fr;
+  gap: 12px;
+  align-items: center;
+}
+
+.lockVisual span,
+.lockVisual strong {
+  min-height: 88px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 12px;
+  font-size: 20px;
+  font-weight: 900;
+}
+
+.lockVisual span:first-child {
+  background: #e5f3ed;
+  color: var(--green);
+}
+
+.lockVisual strong {
+  background: var(--charcoal);
+  color: white;
+}
+
+.lockVisual span:last-child {
+  background: #f8e7d0;
+  color: #8c5e16;
+}
+
+.conditionGrid,
+.benefitGrid,
+.modernGrid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 18px;
+  height: 100%;
+  align-content: center;
+}
+
+.conditionGrid div,
+.benefitGrid div,
+.modernGrid div {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  padding: 22px;
+  background: #fffefa;
+}
+
+.conditionGrid h3,
+.benefitGrid h3,
+.modernGrid h3 {
+  font-size: 27px;
+  margin-bottom: 12px;
+}
+
+.conditionGrid p {
+  font-size: 21px;
+  color: var(--muted);
+  line-height: 1.5;
+}
+
+.bigClaim {
+  height: 100%;
+  display: grid;
+  align-content: center;
+  gap: 22px;
+}
+
+.bigClaim ul {
+  margin: 0;
+  padding-left: 24px;
+  display: grid;
+  gap: 12px;
+  font-size: 22px;
+  line-height: 1.45;
+}
+
+.tableWrap {
+  height: 100%;
+  display: grid;
+  align-items: center;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 18px;
+}
+
+th,
+td {
+  border-bottom: 1px solid var(--line);
+  padding: 14px;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  color: var(--green);
+  font-size: 19px;
+}
+
+.codePanel {
+  margin: 0;
+  height: 100%;
+  overflow: hidden;
+  background: #1f2a32;
+  color: #edf7f5;
+  border-radius: 8px;
+  padding: 22px;
+  font-size: 20px;
+  line-height: 1.48;
+  border: 1px solid #374957;
+}
+
+.codePanel.small {
+  font-size: 20px;
+  min-height: 300px;
+}
+
+.timeline,
+.scenario {
+  display: grid;
+  gap: 14px;
+}
+
+.timeline div,
+.scenario div {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  padding: 12px 0;
+  border-bottom: 1px solid var(--line);
+}
+
+.timeline p {
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.dangerStep p {
+  color: var(--red);
+}
+
+.equationFlow {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 22px;
+}
+
+.equationFlow div {
+  width: 280px;
+  height: 210px;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 22px;
+  background: #fffefa;
+}
+
+.equationFlow strong {
+  font-size: 40px;
+  color: var(--green);
+}
+
+.equationFlow span {
+  font-size: 20px;
+  color: var(--muted);
+  line-height: 1.45;
+}
+
+.equationFlow b {
+  font-size: 46px;
+  color: var(--gold);
+}
+
+.variableCard {
+  height: 100%;
+  display: grid;
+  align-content: center;
+  gap: 20px;
+}
+
+.variableCard h3 {
+  font-size: 48px;
+  color: var(--green);
+}
+
+.variableCard code {
+  font-size: 22px;
+  background: #edf3f0;
+  padding: 14px;
+  border-radius: 8px;
+}
+
+.simBoard {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1.1fr 1fr;
+  gap: 18px;
+  align-items: center;
+}
+
+.simProcess,
+.criticalZone {
+  min-height: 270px;
+  border-radius: 8px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 20px;
+  border: 2px solid var(--line);
+  transition: transform 0.35s ease, background 0.35s ease, border-color 0.35s ease;
+}
+
+.simProcess strong {
+  font-size: 42px;
+}
+
+.simProcess span,
+.criticalZone span,
+.criticalZone b {
+  font-size: 20px;
+  line-height: 1.35;
+}
+
+.criticalZone {
+  background: #eef1f3;
+}
+
+.criticalZone.occupied {
+  background: #e5f3ed;
+  border-color: var(--green);
+}
+
+.simProcess.inZone {
+  transform: translateY(-18px);
+  background: #e5f3ed;
+  border-color: var(--green);
+}
+
+.simProcess.waiting {
+  background: #f8e7d0;
+  border-color: var(--gold);
+}
+
+.statePanel {
+  display: grid;
+  gap: 18px;
+}
+
+.statePanel h3 {
+  font-size: 32px;
+}
+
+.statePanel p {
+  font-size: 23px;
+  line-height: 1.55;
+  color: var(--muted);
+}
+
+.slide.tutor {
+  padding: 24px 30px 18px;
+  gap: 10px;
+}
+
+.slide.tutor h2 {
+  font-size: 36px;
+}
+
+.slide.tutor .speakerNote {
+  font-size: 12px;
+  padding-top: 7px;
+}
+
+.tutorApp {
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 10px;
+}
+
+.tutorMain {
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 0.98fr) minmax(0, 1.02fr);
+  gap: 12px;
+}
+
+.tutorLeft,
+.tutorRight {
+  min-height: 0;
+  display: grid;
+  gap: 10px;
+}
+
+.tutorLeft {
+  grid-template-rows: minmax(145px, 0.46fr) minmax(180px, 0.54fr);
+}
+
+.tutorRight {
+  grid-template-rows: auto minmax(190px, 1fr) auto;
+}
+
+.tutorPanel {
+  min-height: 0;
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fffefa;
+  box-shadow: 0 10px 24px rgba(32, 44, 56, 0.08);
+  overflow: hidden;
+}
+
+.panelHeader {
+  height: 38px;
+  padding: 0 12px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid var(--line);
+  background: #f6f1e7;
+  color: var(--charcoal);
+}
+
+.panelHeader strong {
+  font-size: 14px;
+  font-weight: 900;
+}
+
+.panelHeader span {
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 750;
+}
+
+.editorButtons {
+  display: flex;
+  gap: 6px;
+}
+
+.editorButtons button,
+.executionControls button {
+  min-height: 29px;
+  border-radius: 7px;
+  padding: 0 10px;
+  font-weight: 850;
+  font-size: 12px;
+}
+
+.editorButtons button:first-child,
+.executionControls button:nth-of-type(4) {
+  background: var(--green);
+  color: white;
+  border-color: var(--green);
+}
+
+.codeEditorPanel textarea {
+  width: 100%;
+  height: calc(100% - 38px);
+  resize: none;
+  border: 0;
+  outline: 0;
+  padding: 12px 14px;
+  background: #1f2a32;
+  color: #edf7f5;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.46;
+}
+
+.traceCode {
+  height: calc(100% - 38px);
+  margin: 0;
+  overflow: auto;
+  padding: 8px;
+  background: #202c38;
+  color: #e9f3f1;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 13px;
+  line-height: 1.42;
+}
+
+.traceLine {
+  display: grid;
+  grid-template-columns: 34px 1fr;
+  gap: 8px;
+  padding: 3px 7px;
+  border-radius: 6px;
+}
+
+.traceLine span {
+  color: #93a3af;
+  text-align: right;
+  user-select: none;
+}
+
+.traceLine.active {
+  background: #f3c56b;
+  color: #111923;
+  box-shadow: inset 4px 0 0 #9e6812;
+}
+
+.traceLine.active span {
+  color: #593b0b;
+  font-weight: 900;
+}
+
+.variablePanel,
+.memoryPanel,
+.consolePanel {
+  padding-bottom: 10px;
+}
+
+.variableGrid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 8px;
+  padding: 10px;
+}
+
+.valueCard {
+  min-height: 66px;
+  padding: 10px;
+  border: 1px solid #d9d1c2;
+  border-radius: 8px;
+  background: #fbf7ee;
+  display: grid;
+  align-content: center;
+  gap: 5px;
+}
+
+.valueCard.changed,
+.memoryObject.changed,
+.consoleOutput.changed {
+  border-color: #d8a545;
+  background: #fff5dc;
+  box-shadow: 0 0 0 2px rgba(216, 165, 69, 0.22);
+}
+
+.valueCard span {
+  color: var(--muted);
+  font-size: 12px;
+  font-weight: 850;
+}
+
+.valueCard b,
+.arrayBox b {
+  font-size: 16px;
+}
+
+.referenceValue {
+  color: var(--blue);
+}
+
+.booleanTrue {
+  color: var(--green);
+}
+
+.booleanFalse,
+.nullValue {
+  color: var(--red);
+}
+
+.numberValue {
+  color: #285f93;
+}
+
+.stringValue {
+  color: #7b4ea3;
+}
+
+.memoryLayout {
+  height: calc(100% - 38px);
+  min-height: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 180px;
+  gap: 10px;
+  padding: 10px;
+  align-items: stretch;
+}
+
+.memoryObject,
+.criticalMemory {
+  border: 1px solid #d9d1c2;
+  border-radius: 8px;
+  background: #fbf7ee;
+  padding: 12px;
+}
+
+.objectTitle {
+  display: flex;
+  justify-content: space-between;
+  color: var(--charcoal);
+  font-weight: 900;
+  margin-bottom: 12px;
+}
+
+.objectTitle span {
+  color: var(--blue);
+  font-size: 12px;
+}
+
+.arrayBox {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 8px;
+}
+
+.arrayBox > div {
+  min-height: 82px;
+  border: 1px solid #cfc7b8;
+  border-radius: 8px;
+  background: #fffdf8;
+  display: grid;
+  place-items: center;
+  padding: 8px;
+}
+
+.arrayBox > div.cellChanged {
+  border-color: var(--gold);
+  background: #fff1d2;
+}
+
+.arrayBox span {
+  align-self: start;
+  justify-self: start;
+  font-size: 12px;
+  color: var(--muted);
+  font-weight: 900;
+}
+
+.criticalMemory {
+  display: grid;
+  place-items: center;
+  text-align: center;
+  background: #eef1f3;
+}
+
+.criticalMemory.occupied {
+  background: #e5f3ed;
+  border-color: var(--green);
+}
+
+.criticalMemory span {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 900;
+}
+
+.criticalMemory strong {
+  font-size: 28px;
+  color: var(--charcoal);
+}
+
+.consoleOutput {
+  min-height: 58px;
+  margin: 10px;
+  padding: 10px;
+  border: 1px solid #d9d1c2;
+  border-radius: 8px;
+  background: #202c38;
+  color: #edf7f5;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  font-size: 14px;
+}
+
+.consoleOutput p {
+  margin: 0;
+}
+
+.emptyState {
+  color: var(--muted);
+  font-size: 13px;
+  font-weight: 750;
+  padding: 10px;
+}
+
+.tutorBottom {
+  display: grid;
+  grid-template-columns: auto minmax(140px, 0.7fr) minmax(0, 1fr);
+  gap: 10px;
+  align-items: stretch;
+}
+
+.executionControls,
+.explanationPanel,
+.stepTimeline {
+  border: 1px solid var(--line);
+  border-radius: 8px;
+  background: #fffefa;
+  box-shadow: 0 8px 18px rgba(32, 44, 56, 0.06);
+}
+
+.executionControls {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 9px;
+}
+
+.executionControls strong {
+  min-width: 54px;
+  text-align: center;
+  font-size: 13px;
+}
+
+.stepTimeline {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  padding: 0 10px;
+}
+
+.stepTimeline button {
+  flex: 1;
+  min-width: 8px;
+  height: 10px;
+  border-radius: 99px;
+  border: 0;
+  background: #d9d1c2;
+}
+
+.stepTimeline button.active {
+  background: var(--green);
+}
+
+.explanationPanel {
+  padding: 9px 12px;
+  display: grid;
+  align-content: center;
+  gap: 4px;
+}
+
+.explanationPanel span {
+  color: var(--green);
+  font-size: 12px;
+  font-weight: 950;
+}
+
+.explanationPanel p {
+  color: #25313d;
+  font-size: 14px;
+  line-height: 1.42;
+  font-weight: 720;
+}
+
+.stateChips {
+  display: flex;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.stateChips span {
+  padding: 12px 14px;
+  border-radius: 8px;
+  background: #ece8de;
+  font-weight: 800;
+}
+
+.stateChips .active {
+  background: var(--green);
+  color: white;
+}
+
+.stepControls {
+  display: flex;
+  gap: 10px;
+}
+
+.stepControls button,
+.controls button {
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+}
+
+.riskList {
+  margin: 0;
+  padding: 18px 0 0 26px;
+  display: grid;
+  gap: 18px;
+}
+
+.riskList li {
+  font-size: 25px;
+}
+
+.compareGrid {
+  align-items: stretch;
+}
+
+.compareGrid > div {
+  min-height: 0;
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  gap: 14px;
+}
+
+.compareGrid h3 {
+  font-size: 30px;
+}
+
+.modernGrid {
+  grid-template-columns: repeat(3, 1fr);
+}
+
+.modernGrid div {
+  display: grid;
+  gap: 10px;
+}
+
+.modernGrid svg {
+  color: var(--green);
+}
+
+.finalSummary {
+  height: 100%;
+  display: grid;
+  align-content: center;
+  gap: 28px;
+}
+
+.finalSummary blockquote {
+  margin: 0;
+  padding: 24px;
+  border-left: 8px solid var(--green);
+  background: #eef6f1;
+  font-weight: 800;
+}
+
+.controls {
+  width: min(calc(100vw - 24px), calc((100vh - 78px) * 16 / 9));
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 14px;
+  align-items: center;
+  margin-top: 14px;
+}
+
+.progress {
+  height: 9px;
+  background: #ded8cc;
+  border-radius: 99px;
+  overflow: hidden;
+}
+
+.progress span {
+  height: 100%;
+  display: block;
+  background: var(--green);
+}
+
+/* Toss-like visual theme */
+body {
+  background:
+    radial-gradient(circle at 18% 12%, rgba(49, 130, 246, 0.08), transparent 28%),
+    linear-gradient(180deg, #f7f8fa 0%, #eef1f4 100%);
+}
+
+button {
+  border-color: #dfe3e8;
+  background: #ffffff;
+  color: var(--ink);
+  box-shadow: 0 1px 2px rgba(25, 31, 40, 0.06);
+  transition: background 0.16s ease, border-color 0.16s ease, transform 0.16s ease;
+}
+
+button:hover {
+  background: #f7f8fa;
+  border-color: #cfd6dd;
+}
+
+button:active {
+  transform: translateY(1px);
+}
+
+.slide {
+  background: #ffffff;
+  border: 1px solid #e5e8eb;
+  box-shadow: 0 28px 80px rgba(25, 31, 40, 0.12);
+}
+
+.slideTop,
+.speakerNote {
+  color: #6b7684;
+}
+
+.speakerNote {
+  border-top-color: #e5e8eb;
+}
+
+.slide h2,
+.heroCopy h1 {
+  color: #111827;
+}
+
+.heroCopy p {
+  color: #333d4b;
+}
+
+.bankPanel,
+.racePanel {
+  background:
+    linear-gradient(90deg, rgba(0, 166, 97, 0.08), rgba(255, 255, 255, 0.94) 48%, rgba(240, 68, 82, 0.08)),
+    #ffffff;
+  border-color: #e5e8eb;
+  box-shadow: 0 20px 46px rgba(25, 31, 40, 0.1);
+}
+
+.bankProcess,
+.processor {
+  border-color: #e5e8eb;
+  box-shadow: 0 12px 28px rgba(25, 31, 40, 0.08);
+}
+
+.bankProcess {
+  background: #e9f8f1;
+  color: #008f5a;
+}
+
+.bankProcess.p1 {
+  background: #fff0f2;
+  color: #e83f50;
+}
+
+.bankAccount,
+.sharedCounter,
+.lockVisual strong,
+.codePanel,
+.codeEditorPanel textarea,
+.traceCode,
+.consoleOutput {
+  background: #111827;
+  color: #f8fafc;
+}
+
+.bankAccount {
+  box-shadow: 0 18px 40px rgba(17, 24, 39, 0.22);
+}
+
+.bankAccount em {
+  color: #b9d6ff;
+}
+
+.bankResult,
+.lostUpdate {
+  background: #eff6ff;
+  color: #1b64da;
+  border-color: #d6e7ff;
+  box-shadow: 0 8px 18px rgba(49, 130, 246, 0.12);
+}
+
+.agendaList li,
+.finalSummary blockquote,
+.criticalZone.occupied,
+.simProcess.inZone,
+.criticalMemory.occupied {
+  background: #eff6ff;
+  border-color: #b9d6ff;
+}
+
+.agendaList li {
+  border-left-color: var(--blue);
+}
+
+.agendaList li::before,
+th,
+.equationFlow strong,
+.variableCard h3,
+.modernGrid svg,
+.explanationPanel span {
+  color: var(--blue);
+}
+
+.textBlock,
+.definitionStack,
+.variableCard,
+.attemptText,
+.statePanel,
+.scenario,
+.bigClaim,
+.tableWrap,
+.bankTableWrap,
+.criticalRule,
+.conditionGrid div,
+.benefitGrid div,
+.modernGrid div,
+.equationFlow div,
+.tutorPanel,
+.executionControls,
+.explanationPanel,
+.stepTimeline {
+  background: #ffffff;
+  border-color: #e5e8eb;
+  box-shadow: 0 10px 28px rgba(25, 31, 40, 0.06);
+}
+
+.iconBadge,
+.bigIcon,
+.stateChips .active,
+.progress span,
+.stepTimeline button.active,
+.editorButtons button:first-child,
+.executionControls button:nth-of-type(4) {
+  background: var(--blue);
+  border-color: var(--blue);
+  color: #ffffff;
+}
+
+.panelHeader {
+  background: #f7f8fa;
+  border-bottom-color: #e5e8eb;
+  color: #191f28;
+}
+
+.panelHeader span,
+.emptyState,
+.textBlock p,
+.definitionStack span,
+.attemptText p,
+.variableCard p,
+.scenario p,
+.riskList li,
+.benefitGrid p,
+.modernGrid p,
+.compareGrid p,
+.conditionGrid p,
+.criticalRule p,
+.statePanel p {
+  color: #4e5968;
+}
+
+.codeLine {
+  background: #111827;
+  color: #f8fafc;
+}
+
+.variableCard code,
+.stateChips span {
+  background: #f2f4f6;
+  color: #333d4b;
+}
+
+.lockVisual span:first-child,
+.processor.p0 {
+  background: #e9f8f1;
+  color: #008f5a;
+}
+
+.lockVisual span:last-child,
+.processor.p1,
+.simProcess.waiting {
+  background: #fff0f2;
+  color: #e83f50;
+  border-color: #ffd5da;
+}
+
+.conditionGrid div,
+.benefitGrid div,
+.modernGrid div {
+  box-shadow: 0 10px 26px rgba(25, 31, 40, 0.055);
+}
+
+.valueCard,
+.memoryObject,
+.criticalMemory,
+.arrayBox > div {
+  background: #ffffff;
+  border-color: #e5e8eb;
+}
+
+.valueCard.changed,
+.memoryObject.changed,
+.consoleOutput.changed,
+.arrayBox > div.cellChanged {
+  border-color: #b9d6ff;
+  background: #eff6ff;
+  box-shadow: 0 0 0 3px rgba(49, 130, 246, 0.12);
+}
+
+.traceLine.active {
+  background: #e8f3ff;
+  color: #191f28;
+  box-shadow: inset 4px 0 0 var(--blue);
+}
+
+.traceLine.active span {
+  color: #1b64da;
+}
+
+.referenceValue,
+.numberValue {
+  color: var(--blue);
+}
+
+.booleanTrue {
+  color: #00a661;
+}
+
+.booleanFalse,
+.nullValue {
+  color: #f04452;
+}
+
+.stringValue {
+  color: #7c3aed;
+}
+
+.criticalMemory {
+  background: #f7f8fa;
+}
+
+.criticalMemory strong,
+.explanationPanel p {
+  color: #191f28;
+}
+
+.progress {
+  background: #e5e8eb;
+}
+
+.controls button {
+  background: #ffffff;
+  border-color: #dfe3e8;
+}
+
+/* Presentation layout refinement */
+.slide {
+  padding: 28px 36px 18px;
+  grid-template-rows: 24px auto minmax(0, 1fr) 38px;
+  gap: 10px;
+}
+
+.slideTop {
+  align-items: center;
+}
+
+.slide h2 {
+  font-size: 42px;
+}
+
+.speakerNote {
+  align-items: center;
+  padding-top: 8px;
+  font-size: 13px;
+}
+
+.slideBody > * {
+  min-height: 0;
+}
+
+.textBlock,
+.definitionStack,
+.variableCard,
+.attemptText,
+.statePanel,
+.scenario,
+.bigClaim,
+.tableWrap,
+.bankTableWrap,
+.criticalRule,
+.conditionGrid div,
+.benefitGrid div,
+.modernGrid div,
+.equationFlow div,
+.tutorPanel,
+.executionControls,
+.explanationPanel,
+.stepTimeline,
+.bankPanel,
+.racePanel,
+.codePanel,
+.codeLine,
+.valueCard,
+.memoryObject,
+.criticalMemory,
+.arrayBox > div {
+  border-radius: 16px;
+}
+
+.textBlock,
+.definitionStack,
+.variableCard,
+.attemptText,
+.statePanel,
+.scenario,
+.bigClaim,
+.tableWrap,
+.bankTableWrap,
+.criticalRule,
+.conditionGrid div,
+.benefitGrid div,
+.modernGrid div,
+.equationFlow div,
+.tutorPanel,
+.executionControls,
+.explanationPanel,
+.stepTimeline {
+  box-shadow: 0 10px 30px rgba(25, 31, 40, 0.055);
+}
+
+.conceptFlow {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 0.62fr 1.38fr;
+  gap: 24px;
+  align-items: center;
+}
+
+.conceptFlow .textBlock {
+  display: grid;
+  align-content: center;
+  min-height: 430px;
+}
+
+.flowDiagram {
+  min-height: 0;
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.flowNode {
+  flex: 1;
+  min-height: 270px;
+  padding: 20px;
+  border: 1px solid #e5e8eb;
+  border-radius: 16px;
+  background: #ffffff;
+  display: grid;
+  align-content: center;
+  gap: 10px;
+  box-shadow: 0 10px 28px rgba(25, 31, 40, 0.055);
+}
+
+.flowNode strong {
+  color: #191f28;
+  font-size: 25px;
+}
+
+.flowNode span {
+  color: #4e5968;
+  font-size: 18px;
+  line-height: 1.42;
+  font-weight: 650;
+}
+
+.flowNode.primary {
+  background: #eff6ff;
+  border-color: #b9d6ff;
+}
+
+.flowNode.primary strong {
+  color: #1b64da;
+}
+
+.flowArrow {
+  display: grid;
+  place-items: center;
+  width: 26px;
+  height: 26px;
+  border-radius: 50%;
+  background: #eff6ff;
+  color: #1b64da;
+  font-weight: 950;
+  flex: 0 0 auto;
+}
+
+.raceFlow {
+  min-height: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 12px;
+}
+
+.raceFlow .bankPanel {
+  min-height: 0;
+  height: 100%;
+}
+
+.raceFlow .flowDiagram {
+  display: flex;
+}
+
+.raceFlow .flowNode {
+  min-height: 82px;
+  padding: 12px;
+}
+
+.raceFlow .flowNode strong {
+  font-size: 20px;
+}
+
+.raceFlow .flowNode span {
+  font-size: 14px;
+}
+
+.bankSlide {
+  grid-template-columns: 1.08fr 0.92fr;
+  gap: 18px;
+}
+
+.bankTable {
+  font-size: 18px;
+}
+
+.bankTable th,
+.bankTable td {
+  padding: 13px 14px;
+}
+
+.bankTable th:nth-child(2),
+.bankTable th:nth-child(3),
+.bankTable td:nth-child(2),
+.bankTable td:nth-child(3) {
+  width: 31%;
+}
+
+.tableWrap {
+  padding: 18px;
+}
+
+.tableWrap table {
+  table-layout: fixed;
+  font-size: 20px;
+}
+
+.tableWrap th,
+.tableWrap td {
+  padding: 16px 14px;
+}
+
+.tableWrap th:nth-child(1),
+.tableWrap td:nth-child(1) {
+  width: 20%;
+}
+
+.tableWrap th:nth-child(2),
+.tableWrap td:nth-child(2) {
+  width: 16%;
+}
+
+.tableWrap th:nth-child(3),
+.tableWrap td:nth-child(3) {
+  width: 22%;
+}
+
+.tableWrap th:nth-child(4),
+.tableWrap td:nth-child(4) {
+  width: 42%;
+  color: var(--red);
+  font-weight: 850;
+  background: #fff5f6;
+}
+
+.attemptDetail {
+  grid-template-columns: 0.92fr 1.08fr;
+  gap: 22px;
+}
+
+.attemptCodeStack {
+  min-height: 0;
+  height: 100%;
+  display: grid;
+  grid-template-rows: minmax(0, 0.68fr) auto;
+  gap: 14px;
+}
+
+.codePanel.small {
+  min-height: 0;
+}
+
+.attemptMiniFlow {
+  min-height: 96px;
+  border: 1px solid #e5e8eb;
+  border-radius: 16px;
+  background: #ffffff;
+  box-shadow: 0 10px 28px rgba(25, 31, 40, 0.055);
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 10px;
+  align-items: center;
+  padding: 14px;
+}
+
+.attemptMiniFlow span {
+  min-height: 54px;
+  border-radius: 14px;
+  background: #f2f4f6;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  font-weight: 900;
+  color: #333d4b;
+}
+
+.attemptMiniFlow b {
+  color: #8b95a1;
+  font-size: 22px;
+}
+
+.attemptMiniFlow .fail {
+  background: #fff0f2;
+  color: var(--red);
+}
+
+.attemptText {
+  display: grid;
+  align-content: center;
+  gap: 12px;
+}
+
+.attemptText .iconBadge {
+  margin-bottom: 2px;
+}
+
+.dangerTitle,
+.dangerText,
+.dangerStep p,
+.riskList li::marker {
+  color: var(--red);
+}
+
+.dekkerCodeSlide {
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 0.92fr 1.08fr;
+  gap: 20px;
+  align-items: stretch;
+}
+
+.dekkerCodeSlide .codePanel {
+  font-size: 17px;
+  line-height: 1.34;
+  padding: 20px 22px;
+}
+
+.dekkerVisual {
+  min-height: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 14px;
+}
+
+.dekkerVisual .flowDiagram {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+.dekkerVisual .flowArrow {
+  display: none;
+}
+
+.dekkerVisual .flowNode {
+  min-height: 0;
+}
+
+.criticalPath {
+  min-height: 118px;
+  border: 1px solid #e5e8eb;
+  border-radius: 16px;
+  display: grid;
+  grid-template-columns: 1fr 1.2fr 1fr;
+  gap: 12px;
+  align-items: center;
+  padding: 14px;
+  background: #ffffff;
+  box-shadow: 0 10px 28px rgba(25, 31, 40, 0.055);
+}
+
+.criticalPath span,
+.criticalPath strong {
+  min-height: 78px;
+  display: grid;
+  place-items: center;
+  border-radius: 14px;
+  font-size: 20px;
+  font-weight: 950;
+}
+
+.criticalPath span {
+  background: #eff6ff;
+  color: #1b64da;
+}
+
+.criticalPath strong {
+  background: #111827;
+  color: #ffffff;
+}
+
+.scenario {
+  align-content: center;
+}
+
+.scenario div {
+  min-height: 68px;
+}
+
+.scenario p {
+  font-size: 24px;
+  font-weight: 800;
+}
+
+.riskList {
+  height: 100%;
+  align-content: center;
+  padding-top: 0;
+}
+
+.riskList li {
+  font-size: 26px;
+  color: #191f28;
+}
+
+/* Simplified Python Tutor slide */
+.slide.tutor {
+  padding: 22px 30px 16px;
+}
+
+.slide.tutor h2 {
+  font-size: 38px;
+}
+
+.tutorApp {
+  gap: 8px;
+}
+
+.tutorMain {
+  grid-template-columns: minmax(0, 1.02fr) minmax(0, 0.98fr);
+  gap: 12px;
+}
+
+.tutorLeft {
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.tutorRight {
+  grid-template-rows: minmax(210px, 1.1fr) auto auto;
+}
+
+.panelHeader {
+  height: 42px;
+  padding: 0 14px;
+}
+
+.panelHeader strong {
+  font-size: 15px;
+}
+
+.codeEditorBody {
+  height: calc(100% - 42px);
+  min-height: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.codeEditorPanel textarea {
+  display: none;
+  height: 112px;
+  border-bottom: 1px solid #263244;
+  font-size: 13px;
+  line-height: 1.42;
+}
+
+.traceCode {
+  height: 100%;
+  font-size: 15px;
+  line-height: 1.55;
+  padding: 12px;
+}
+
+.traceLine {
+  padding: 5px 8px;
+}
+
+.traceLine.active {
+  background: #eff6ff;
+  color: #191f28;
+  box-shadow: inset 5px 0 0 var(--blue);
+}
+
+.memoryLayout {
+  grid-template-columns: minmax(0, 1fr) 220px;
+  gap: 14px;
+  padding: 14px;
+}
+
+.criticalMemory strong {
+  font-size: 38px;
+}
+
+.criticalMemory span {
+  font-size: 15px;
+}
+
+.arrayBox > div {
+  min-height: 104px;
+}
+
+.arrayBox b {
+  font-size: 22px;
+}
+
+.variableGrid {
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  padding: 12px;
+}
+
+.valueCard {
+  min-height: 76px;
+}
+
+.valueCard b {
+  font-size: 19px;
+}
+
+.consoleOutput {
+  min-height: 48px;
+}
+
+.tutorBottom {
+  grid-template-columns: auto minmax(160px, 0.75fr) minmax(0, 1fr);
+  gap: 8px;
+}
+
+.executionControls,
+.explanationPanel,
+.stepTimeline {
+  min-height: 74px;
+}
+
+.explanationPanel p {
+  font-size: 15px;
+}
+
+/* Compact spacing pass */
+.deck {
+  padding: 6px;
+}
+
+.slide {
+  width: min(calc(100vw - 12px), calc((100vh - 54px) * 16 / 9));
+  height: min(calc(100vh - 54px), calc((100vw - 12px) * 9 / 16));
+  padding: 16px 22px 10px;
+  grid-template-rows: 20px auto minmax(0, 1fr) 30px;
+  gap: 6px;
+}
+
+.slide.hero {
+  padding: 18px 24px 10px;
+}
+
+.slide.tutor {
+  padding: 14px 18px 10px;
+  gap: 6px;
+}
+
+.speakerNote {
+  padding-top: 5px;
+}
+
+.heroGrid,
+.twoColumn,
+.incrementGrid,
+.attemptDetail,
+.compareGrid,
+.animationWrap,
+.conceptFlow,
+.bankSlide,
+.criticalIntro,
+.dekkerCodeSlide,
+.tutorMain {
+  gap: 12px;
+}
+
+.tutorApp,
+.tutorLeft,
+.tutorRight,
+.tutorBottom,
+.dekkerVisual,
+.attemptCodeStack,
+.raceFlow {
+  gap: 6px;
+}
+
+.textBlock,
+.definitionStack,
+.variableCard,
+.attemptText,
+.statePanel,
+.scenario,
+.bigClaim,
+.tableWrap,
+.bankTableWrap,
+.criticalRule,
+.conditionGrid div,
+.benefitGrid div,
+.modernGrid div,
+.equationFlow div,
+.tutorPanel,
+.executionControls,
+.explanationPanel,
+.memoryObject,
+.criticalMemory,
+.valueCard,
+.arrayBox > div {
+  padding: 12px;
+}
+
+.conditionGrid,
+.benefitGrid,
+.modernGrid,
+.definitionStack,
+.microSteps,
+.timeline,
+.scenario,
+.bigClaim,
+.riskList {
+  gap: 9px;
+}
+
+.flowDiagram {
+  gap: 6px;
+}
+
+.flowNode {
+  padding: 12px;
+}
+
+.flowArrow {
+  width: 22px;
+  height: 22px;
+}
+
+.bankPanel {
+  gap: 11px;
+  padding: 20px 17px 35px;
+}
+
+.bankResult {
+  bottom: 18px;
+}
+
+.codePanel {
+  padding: 14px;
+}
+
+.codeLine {
+  padding: 10px 12px;
+  margin-bottom: 7px;
+}
+
+.tableWrap {
+  padding: 10px;
+}
+
+.tableWrap th,
+.tableWrap td,
+.bankTable th,
+.bankTable td,
+th,
+td {
+  padding: 8px 9px;
+}
+
+.panelHeader {
+  height: 36px;
+  padding: 0 10px;
+}
+
+.codeEditorBody {
+  height: calc(100% - 36px);
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.codeEditorPanel textarea {
+  display: none;
+}
+
+.variableGrid,
+.memoryLayout {
+  gap: 7px;
+  padding: 7px;
+}
+
+.consoleOutput {
+  margin: 6px;
+  padding: 7px;
+}
+
+.executionControls {
+  padding: 5px;
+}
+
+.stepTimeline {
+  padding: 0 6px;
+}
+
+.explanationPanel {
+  padding: 6px 8px;
+}
+
+.controls {
+  width: min(calc(100vw - 12px), calc((100vh - 54px) * 16 / 9));
+  gap: 7px;
+  margin-top: 7px;
+}
+
+/* Correct slide scale after compact pass */
+.deck {
+  padding: 18px;
+}
+
+.slide {
+  width: min(88vw, calc(82vh * 16 / 9), 1440px);
+  height: min(82vh, calc(88vw * 9 / 16), 810px);
+  padding: 26px 34px 18px;
+  grid-template-rows: 22px auto minmax(0, 1fr) 42px;
+  gap: 10px;
+}
+
+.slide.hero {
+  padding: 28px 36px 18px;
+}
+
+.slide.hero .slideBody {
+  display: grid;
+  align-items: center;
+}
+
+.slide.hero .heroGrid {
+  transform: translateY(-34px);
+}
+
+.slide.hero .bankPanel {
+  min-height: 500px;
+}
+
+.speakerNote {
+  font-size: 16px;
+  font-weight: 750;
+  line-height: 1.45;
+  padding-top: 9px;
+}
+
+.slide.hero .speakerNote {
+  font-size: 16px;
+}
+
+.slideTop {
+  font-size: 15px;
+}
+
+.controls {
+  width: min(88vw, calc(82vh * 16 / 9), 1440px);
+  margin-top: 10px;
+}
+
+/* Canva-style presentation pass */
+body {
+  background: #f7f8fa;
+}
+
+.deck {
+  padding: 10px 14px;
+}
+
+.slide {
+  width: min(96vw, calc(90vh * 16 / 9), 1720px);
+  height: min(90vh, calc(96vw * 9 / 16), 968px);
+  padding: 30px 42px 26px;
+  grid-template-rows: 26px auto minmax(0, 1fr) 58px;
+  gap: 8px;
+  border: 1px solid #edf0f3;
+  box-shadow: 0 18px 50px rgba(25, 31, 40, 0.08);
+}
+
+.slideTop {
+  font-size: 16px;
+  font-weight: 850;
+}
+
+.slide h2 {
+  font-size: 48px;
+  line-height: 1.04;
+  margin: 0;
+}
+
+.slideBody {
+  padding-top: 6px;
+}
+
+.speakerNote {
+  border: 1px solid #d6e7ff;
+  border-top: 1px solid #d6e7ff;
+  border-radius: 16px;
+  background: #eff6ff;
+  color: #1b64da;
+  padding: 12px 16px;
+  font-size: 17px;
+  font-weight: 850;
+  line-height: 1.35;
+  align-items: center;
+}
+
+.controls {
+  width: min(96vw, calc(90vh * 16 / 9), 1720px);
+  margin-top: 8px;
+}
+
+.progress {
+  height: 8px;
+}
+
+.slide.hero {
+  padding: 32px 44px 26px;
+}
+
+.slide.hero .slideBody {
+  align-items: start;
+}
+
+.slide.hero .heroGrid {
+  transform: none;
+  grid-template-columns: 0.95fr 1.05fr;
+  gap: 26px;
+  align-items: center;
+}
+
+.slide.hero .bankPanel {
+  min-height: 560px;
+}
+
+.heroCopy h1 {
+  font-size: 68px;
+  line-height: 1.02;
+  margin-bottom: 26px;
+}
+
+.heroCopy p {
+  font-size: 28px;
+  line-height: 1.48;
+}
+
+.bankProcess,
+.bankAccount {
+  width: 205px;
+  height: 205px;
+}
+
+.bankAccount {
+  width: 220px;
+  height: 220px;
+}
+
+.bankAccount strong {
+  font-size: 58px;
+}
+
+.bankProcess strong {
+  font-size: 42px;
+}
+
+.bankProcess span {
+  font-size: 21px;
+}
+
+.bankProcess b {
+  font-size: 34px;
+}
+
+.bankResult {
+  font-size: 18px;
+  padding: 14px 22px;
+}
+
+.conceptFlow,
+.bankSlide,
+.criticalIntro,
+.attemptDetail,
+.dekkerCodeSlide,
+.twoColumn,
+.compareGrid,
+.animationWrap {
+  gap: 24px;
+}
+
+.textBlock,
+.definitionStack,
+.variableCard,
+.attemptText,
+.statePanel,
+.scenario,
+.bigClaim,
+.tableWrap,
+.bankTableWrap,
+.criticalRule,
+.conditionGrid div,
+.benefitGrid div,
+.modernGrid div,
+.equationFlow div,
+.tutorPanel,
+.executionControls,
+.explanationPanel,
+.stepTimeline,
+.memoryObject,
+.criticalMemory,
+.valueCard,
+.arrayBox > div {
+  padding: 22px;
+  border-radius: 18px;
+}
+
+.flowDiagram {
+  counter-reset: flow-step;
+}
+
+.flowNode {
+  min-height: 310px;
+  padding: 24px;
+  position: relative;
+}
+
+.flowNode::before {
+  counter-increment: flow-step;
+  content: counter(flow-step);
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  background: #eff6ff;
+  color: #1b64da;
+  display: grid;
+  place-items: center;
+  font-size: 18px;
+  font-weight: 950;
+  margin-bottom: 18px;
+}
+
+.flowNode.primary::before {
+  background: var(--blue);
+  color: #ffffff;
+}
+
+.flowNode strong {
+  font-size: 30px;
+}
+
+.flowNode span {
+  font-size: 21px;
+}
+
+.conditionGrid div,
+.benefitGrid div,
+.modernGrid div {
+  min-height: 180px;
+}
+
+.conditionGrid h3,
+.benefitGrid h3,
+.modernGrid h3 {
+  font-size: 31px;
+}
+
+.conditionGrid p,
+.benefitGrid p,
+.modernGrid p {
+  font-size: 23px;
+}
+
+.tableWrap {
+  align-items: stretch;
+}
+
+.tableWrap table {
+  font-size: 23px;
+}
+
+.tableWrap th {
+  font-size: 23px;
+}
+
+.tableWrap th,
+.tableWrap td {
+  padding: 18px 16px;
+}
+
+.bankTable {
+  font-size: 21px;
+}
+
+.bankTable th,
+.bankTable td {
+  padding: 14px 15px;
+}
+
+.codePanel {
+  font-size: 24px;
+  line-height: 1.42;
+  padding: 26px;
+}
+
+.codePanel.small {
+  font-size: 23px;
+}
+
+.attemptCodeStack {
+  grid-template-rows: minmax(0, 0.72fr) auto;
+}
+
+.attemptMiniFlow {
+  min-height: 124px;
+}
+
+.attemptMiniFlow span {
+  min-height: 72px;
+  font-size: 22px;
+}
+
+.attemptText h3 {
+  font-size: 34px;
+}
+
+.attemptText p {
+  font-size: 25px;
+}
+
+.dekkerCodeSlide .codePanel {
+  font-size: 19px;
+  line-height: 1.36;
+}
+
+.dekkerVisual .flowNode {
+  min-height: 180px;
+}
+
+.criticalPath {
+  min-height: 150px;
+}
+
+.criticalPath span,
+.criticalPath strong {
+  min-height: 102px;
+  font-size: 24px;
+}
+
+.scenario div {
+  min-height: 88px;
+}
+
+.scenario h3 {
+  font-size: 38px;
+}
+
+.scenario p {
+  font-size: 29px;
+}
+
+.riskList li {
+  font-size: 30px;
+}
+
+.slide.tutor {
+  padding: 26px 34px 22px;
+  grid-template-rows: 26px auto minmax(0, 1fr) 58px;
+}
+
+.slide.tutor h2 {
+  font-size: 46px;
+}
+
+.tutorMain {
+  grid-template-columns: 1fr 1fr;
+}
+
+.panelHeader {
+  height: 46px;
+}
+
+.panelHeader strong {
+  font-size: 17px;
+}
+
+.codeEditorBody {
+  height: calc(100% - 46px);
+  grid-template-rows: minmax(0, 1fr);
+}
+
+.codeEditorPanel textarea {
+  display: none;
+  height: 120px;
+  font-size: 15px;
+}
+
+.traceCode {
+  font-size: 17px;
+}
+
+.memoryLayout {
+  grid-template-columns: minmax(0, 1fr) 270px;
+  padding: 16px;
+}
+
+.criticalMemory strong {
+  font-size: 48px;
+}
+
+.criticalMemory span {
+  font-size: 18px;
+}
+
+.variableGrid {
+  padding: 16px;
+}
+
+.valueCard {
+  min-height: 92px;
+}
+
+.valueCard span {
+  font-size: 14px;
+}
+
+.valueCard b {
+  font-size: 23px;
+}
+
+.consoleOutput {
+  min-height: 66px;
+  font-size: 16px;
+  padding: 12px;
+}
+
+.executionControls,
+.explanationPanel,
+.stepTimeline {
+  min-height: 86px;
+}
+
+.executionControls button {
+  min-height: 38px;
+  padding: 0 16px;
+  font-size: 14px;
+}
+
+.executionControls strong {
+  font-size: 16px;
+}
+
+.explanationPanel p {
+  font-size: 17px;
+}
+
+.versionSlide {
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: 0.92fr 1.08fr;
+  gap: 24px;
+  align-items: stretch;
+}
+
+.versionSlide .codePanel {
+  font-size: 18px;
+  line-height: 1.38;
+}
+
+.versionContent {
+  min-height: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 18px;
+}
+
+.versionSummary {
+  min-height: 0;
+  border: 1px solid #e5e8eb;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(25, 31, 40, 0.055);
+  padding: 26px;
+  display: grid;
+  align-content: center;
+  gap: 12px;
+}
+
+.versionSummary .iconBadge {
+  margin-bottom: 2px;
+}
+
+.versionSummary h3 {
+  font-size: 30px;
+  line-height: 1.1;
+}
+
+.versionSummary p {
+  color: #4e5968;
+  font-size: 23px;
+  line-height: 1.42;
+  font-weight: 720;
+}
+
+.versionFlow {
+  min-height: 118px;
+  border: 1px solid #e5e8eb;
+  border-radius: 18px;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(25, 31, 40, 0.055);
+  padding: 18px;
+  display: grid;
+  grid-template-columns: repeat(7, auto);
+  gap: 10px;
+  align-items: center;
+  justify-content: center;
+}
+
+.versionFlow span {
+  min-width: 118px;
+  min-height: 68px;
+  border-radius: 16px;
+  display: grid;
+  place-items: center;
+  text-align: center;
+  padding: 10px;
+  background: #eff6ff;
+  color: #1b64da;
+  font-size: 20px;
+  font-weight: 950;
+}
+
+.versionFlow b {
+  color: #8b95a1;
+  font-size: 24px;
+}
+
+.versionFlow .fail {
+  background: #fff0f2;
+  color: var(--red);
+}
+
+.codeEditorBody .traceCode {
+  height: 100%;
+}
+
+/* Fullscreen presentation mode */
+.presentationToggle {
+  position: fixed;
+  right: 24px;
+  top: 24px;
+  z-index: 20;
+  min-height: 42px;
+  border-radius: 999px;
+  padding: 0 16px;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 14px;
+  font-weight: 900;
+  color: #1b64da;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+}
+
+.presentationToggle.active {
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+}
+
+.presentationToggle.active.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.deck.presentation {
+  width: 100vw;
+  height: 100vh;
+  min-height: 100vh;
+  padding: 0;
+  background: #05070b;
+  overflow: hidden;
+}
+
+.deck.presentation .slide {
+  width: min(100vw, 177.78vh);
+  height: min(56.25vw, 100vh);
+  max-width: none;
+  max-height: none;
+  border: 0;
+  border-radius: 0;
+  box-shadow: none;
+  padding: clamp(28px, 3.2vh, 44px) clamp(42px, 4.4vw, 76px) clamp(26px, 3vh, 42px);
+  grid-template-rows: clamp(24px, 3vh, 34px) auto minmax(0, 1fr) clamp(58px, 7vh, 84px);
+  gap: clamp(8px, 1.2vh, 16px);
+}
+
+.deck.presentation .slideTop {
+  font-size: clamp(16px, 1.25vw, 22px);
+}
+
+.deck.presentation .slide h2 {
+  font-size: clamp(48px, 3.8vw, 70px);
+}
+
+.deck.presentation .speakerNote {
+  font-size: clamp(18px, 1.35vw, 25px);
+  padding: clamp(12px, 1.4vh, 18px) clamp(16px, 1.6vw, 26px);
+}
+
+.deck.presentation .heroCopy h1 {
+  font-size: clamp(58px, 4.4vw, 86px);
+}
+
+.deck.presentation .heroCopy p,
+.deck.presentation .bigClaim p,
+.deck.presentation .finalSummary p,
+.deck.presentation .finalSummary blockquote {
+  font-size: clamp(24px, 1.75vw, 34px);
+}
+
+.deck.presentation .textBlock p,
+.deck.presentation .definitionStack span,
+.deck.presentation .attemptText p,
+.deck.presentation .variableCard p,
+.deck.presentation .scenario p,
+.deck.presentation .riskList li,
+.deck.presentation .benefitGrid p,
+.deck.presentation .modernGrid p,
+.deck.presentation .compareGrid p,
+.deck.presentation .conditionGrid p,
+.deck.presentation .criticalRule p,
+.deck.presentation .statePanel p,
+.deck.presentation .versionSummary p {
+  font-size: clamp(24px, 1.55vw, 32px);
+}
+
+.deck.presentation .flowNode strong,
+.deck.presentation .conditionGrid h3,
+.deck.presentation .benefitGrid h3,
+.deck.presentation .modernGrid h3,
+.deck.presentation .versionSummary h3 {
+  font-size: clamp(31px, 2vw, 42px);
+}
+
+.deck.presentation .flowNode span {
+  font-size: clamp(22px, 1.45vw, 30px);
+}
+
+.deck.presentation .bankProcess,
+.deck.presentation .bankAccount {
+  width: clamp(210px, 13vw, 280px);
+  height: clamp(210px, 13vw, 280px);
+}
+
+.deck.presentation .bankAccount {
+  width: clamp(230px, 14.5vw, 310px);
+  height: clamp(230px, 14.5vw, 310px);
+}
+
+.deck.presentation .bankAccount strong {
+  font-size: clamp(58px, 4vw, 84px);
+}
+
+.deck.presentation .bankProcess strong {
+  font-size: clamp(42px, 2.8vw, 60px);
+}
+
+.deck.presentation .bankProcess span {
+  font-size: clamp(22px, 1.45vw, 30px);
+}
+
+.deck.presentation .bankProcess b {
+  font-size: clamp(34px, 2.2vw, 48px);
+}
+
+.deck.presentation .codePanel {
+  font-size: clamp(22px, 1.35vw, 30px);
+}
+
+.deck.presentation .versionSlide .codePanel,
+.deck.presentation .dekkerCodeSlide .codePanel {
+  font-size: clamp(18px, 1.08vw, 24px);
+}
+
+.deck.presentation .tableWrap table,
+.deck.presentation .bankTable {
+  font-size: clamp(22px, 1.45vw, 30px);
+}
+
+.deck.presentation .criticalMemory strong {
+  font-size: clamp(52px, 4vw, 82px);
+}
+
+.deck.presentation .valueCard b,
+.deck.presentation .arrayBox b {
+  font-size: clamp(24px, 1.65vw, 36px);
+}
+
+.deck.presentation .controls {
+  position: fixed;
+  left: 50%;
+  bottom: 18px;
+  transform: translateX(-50%);
+  width: min(560px, 42vw);
+  z-index: 19;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease;
+  grid-template-columns: auto 1fr auto;
+}
+
+.deck.presentation .controls.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+
+.deck.presentation .controls .progress {
+  height: 5px;
+  background: rgba(255, 255, 255, 0.24);
+}
+
+.deck.presentation .controls button {
+  width: 38px;
+  height: 38px;
+  border: 0;
+  color: #ffffff;
+  background: rgba(255, 255, 255, 0.16);
+  backdrop-filter: blur(10px);
+}
+
+.presentationPageBadge {
+  position: fixed;
+  right: 26px;
+  bottom: 26px;
+  z-index: 18;
+  border-radius: 999px;
+  padding: 10px 14px;
+  background: rgba(255, 255, 255, 0.14);
+  color: #ffffff;
+  font-size: 14px;
+  font-weight: 900;
+  backdrop-filter: blur(10px);
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
+
+.presentationPageBadge.visible {
+  opacity: 1;
+}
+
+.consoleOutput .emptyState {
+  color: #b8c0cc;
+  padding: 0;
+  font-weight: 850;
+}
+
+.consoleOutput p {
+  color: #ffffff;
+  font-weight: 850;
+}
+
+.consoleOutput.changed {
+  background: #eff6ff;
+  color: #1b64da;
+}
+
+.consoleOutput.changed p {
+  color: #1b64da;
+}
+
+.algorithmCompare {
+  height: 100%;
+  min-height: 0;
+  display: grid;
+  grid-template-rows: minmax(0, 1fr) auto;
+  gap: 18px;
+}
+
+.algorithmCompare table {
+  table-layout: fixed;
+  border: 1px solid #e5e8eb;
+  border-radius: 18px;
+  border-collapse: separate;
+  border-spacing: 0;
+  overflow: hidden;
+  background: #ffffff;
+  box-shadow: 0 10px 30px rgba(25, 31, 40, 0.055);
+  font-size: 24px;
+}
+
+.algorithmCompare th,
+.algorithmCompare td {
+  padding: 20px 22px;
+  border-bottom: 1px solid #e5e8eb;
+  vertical-align: middle;
+}
+
+.algorithmCompare th {
+  color: #1b64da;
+  background: #f7f8fa;
+  font-size: 24px;
+}
+
+.algorithmCompare td:first-child,
+.algorithmCompare th:first-child {
+  width: 18%;
+}
+
+.algorithmCompare td:nth-child(2),
+.algorithmCompare th:nth-child(2) {
+  width: 22%;
+}
+
+.algorithmCompare td:last-child,
+.algorithmCompare th:last-child {
+  width: 60%;
+}
+
+.algorithmCompare td:first-child strong {
+  display: inline-grid;
+  min-width: 92px;
+  min-height: 48px;
+  place-items: center;
+  border-radius: 14px;
+  color: #1b64da;
+  background: #eff6ff;
+}
+
+.algorithmCompare.cons td:last-child {
+  color: var(--red);
+  font-weight: 850;
+  background: #fff5f6;
+}
+
+.compareFocus {
+  min-height: 92px;
+  border: 1px solid #d6e7ff;
+  border-radius: 18px;
+  background: #eff6ff;
+  padding: 18px 22px;
+  display: grid;
+  align-content: center;
+  gap: 6px;
+  color: #1b64da;
+  box-shadow: 0 10px 30px rgba(25, 31, 40, 0.045);
+}
+
+.compareFocus strong {
+  font-size: 22px;
+}
+
+.compareFocus p {
+  margin: 0;
+  font-size: 22px;
+  line-height: 1.35;
+  font-weight: 850;
+}
+
+.deck.presentation .algorithmCompare table {
+  font-size: clamp(25px, 1.55vw, 34px);
+}
+
+.deck.presentation .algorithmCompare th {
+  font-size: clamp(25px, 1.55vw, 34px);
+}
+
+.deck.presentation .compareFocus p {
+  font-size: clamp(24px, 1.5vw, 32px);
+}
+
+@media (max-width: 820px) {
+  .deck {
+    padding: 10px;
+  }
+
+  .slide {
+    width: calc(100vw - 20px);
+    aspect-ratio: auto;
+    min-height: calc(100vh - 76px);
+    padding: 24px;
+  }
+
+  .slide h2 {
+    font-size: 30px;
+  }
+
+  .heroGrid,
+  .twoColumn,
+  .incrementGrid,
+  .bankSlide,
+  .criticalIntro,
+  .attemptDetail,
+  .compareGrid,
+  .animationWrap {
+    grid-template-columns: 1fr;
+  }
+
+  .heroCopy h1 {
+    font-size: 34px;
+  }
+
+  .conditionGrid,
+  .benefitGrid,
+  .modernGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .speakerNote {
+    display: none;
+  }
+}
+
+@media print {
+  @page {
+    size: landscape;
+    margin: 0;
+  }
+
+  body {
+    background: white;
+  }
+
+  .deck {
+    display: block;
+    padding: 0;
+  }
+
+  .printDeck {
+    display: none;
+  }
+
+  body.pdf-exporting .deck {
+    display: none;
+  }
+
+  body.pdf-exporting .printDeck {
+    display: block;
+  }
+
+  .slide {
+    width: 100vw;
+    height: 100vh;
+    box-shadow: none;
+    border: 0;
+    border-radius: 0;
+    page-break-after: always;
+    break-after: page;
+  }
+
+  .controls,
+  .presentationToggle,
+  .pdfDownloadButton {
+    display: none;
+  }
+}
