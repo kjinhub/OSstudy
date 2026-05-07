@@ -438,14 +438,14 @@ const slides = [
     note: '코드 줄, 변수 값, flag 배열, 임계 구역 상태를 한 단계씩 따라가며 데커 알고리즘의 동작을 확인합니다.',
   },
   {
-    title: '장점 비교',
+    title: '데커 알고리즘 기준 장점 비교',
     body: <AlgorithmProsComparison />,
-    note: '데커 알고리즘의 장점은 최초의 순수 소프트웨어 해법이라는 역사성과 flag/turn 개념을 잘 보여준다는 점입니다.',
+    note: '데커를 기준점으로 두고, 이후 알고리즘들이 어떤 방향으로 더 단순하거나 확장 가능하거나 실용적으로 발전했는지 설명합니다.',
   },
   {
-    title: '단점 비교',
+    title: '데커 알고리즘 기준 단점 비교',
     body: <AlgorithmConsComparison />,
-    note: '데커 알고리즘은 교육적으로 중요하지만, 두 프로세스 전용이고 코드가 복잡하며 busy waiting을 사용한다는 한계가 있습니다.',
+    note: '데커보다 발전된 방법들도 각각 한계가 있습니다. 단순성, 확장성, 실용성은 좋아질 수 있지만 구현 부담이나 사용 오류 가능성이 생깁니다.',
   },
   {
     title: 'Peterson 알고리즘과 비교',
@@ -1118,24 +1118,22 @@ function RiskList({ items }) {
 
 function AlgorithmProsComparison() {
   const rows = [
-    ['데커', 'flag + turn', '하드웨어 원자 명령 없이 상호배제, progress, bounded waiting을 설명할 수 있음'],
-    ['피터슨', 'flag + turn', '데커보다 코드가 짧고 조건식이 단순해서 교육용으로 이해하기 쉬움'],
-    ['베이커리', '번호표', '여러 프로세스 확장 아이디어를 직관적으로 보여줌'],
-    ['세마포어', 'wait / signal', '실무 시스템에서 여러 스레드와 자원 개수 제어에 활용 가능'],
+    ['피터슨', 'flag + turn', '데커와 같은 구조를 쓰지만 코드가 더 짧고 조건식이 단순해서 이해하기 쉽다.'],
+    ['베이커리', '번호표', '데커가 2개 프로세스만 다루는 반면, 여러 프로세스로 확장하는 아이디어를 보여준다.'],
+    ['세마포어', 'wait / signal', '데커처럼 직접 busy waiting 코드를 작성하지 않고, 더 실용적인 동기화를 제공한다.'],
   ];
 
-  return <AlgorithmCompareTable rows={rows} lastHeader="주요 장점" mode="pros" />;
+  return <AlgorithmCompareTable rows={rows} lastHeader="데커와 비교한 장점" mode="pros" />;
 }
 
 function AlgorithmConsComparison() {
   const rows = [
-    ['데커', '2개 프로세스', 'Peterson보다 복잡하고 busy waiting이 있으며 현대 메모리 모델에서 그대로 쓰기 어려움'],
-    ['피터슨', '2개 프로세스', '기본 형태는 2개 프로세스 전용이고 busy waiting을 사용함'],
-    ['베이커리', 'N개 프로세스', '번호 선택과 비교 과정이 많아지고 실제 구현에서는 원자성/메모리 가시성 관리가 필요함'],
-    ['세마포어', 'N개 스레드/자원', '잘못 사용하면 deadlock, signal 누락, 순서 오류가 발생할 수 있음'],
+    ['피터슨', '2개 프로세스', '데커보다 단순하지만, 기본 형태는 여전히 2개 프로세스 전용이고 busy waiting을 사용한다.'],
+    ['베이커리', 'N개 프로세스', '여러 프로세스를 다룰 수 있지만 번호표 선택과 비교 과정이 복잡하고 구현 부담이 커진다.'],
+    ['세마포어', 'N개 스레드/자원', '실무적으로 강력하지만 잘못 사용하면 deadlock, signal 누락, 순서 오류가 발생할 수 있다.'],
   ];
 
-  return <AlgorithmCompareTable rows={rows} lastHeader="주요 단점" mode="cons" />;
+  return <AlgorithmCompareTable rows={rows} lastHeader="데커와 비교한 한계" mode="cons" />;
 }
 
 function AlgorithmCompareTable({ rows, lastHeader, mode }) {
@@ -1143,7 +1141,7 @@ function AlgorithmCompareTable({ rows, lastHeader, mode }) {
     <div className={`algorithmCompare ${mode}`}>
       <table>
         <thead>
-          <tr><th>알고리즘</th><th>핵심 방식</th><th>{lastHeader}</th></tr>
+          <tr><th>비교 대상</th><th>핵심 방식</th><th>{lastHeader}</th></tr>
         </thead>
         <tbody>
           {rows.map(([name, method, point]) => (
@@ -1158,8 +1156,8 @@ function AlgorithmCompareTable({ rows, lastHeader, mode }) {
       <div className="compareFocus">
         <strong>{mode === 'pros' ? '데커의 위치' : '발표 핵심'}</strong>
         <p>{mode === 'pros'
-          ? '데커는 실무 도구라기보다, flag와 turn만으로 상호배제를 완성한 초기 순수 소프트웨어 해법이라는 점이 중요하다.'
-          : '데커는 이론적으로 의미가 크지만, 실제 프로그램에서는 Peterson보다 복잡하고 Semaphore 같은 도구보다 실용성이 낮다.'}</p>
+          ? '데커는 기준점이다. 피터슨은 더 단순하게, 베이커리는 더 확장 가능하게, 세마포어는 더 실용적으로 발전한 방향이다.'
+          : '데커보다 발전된 방법들도 각각 한계가 있다. 단순성, 확장성, 실용성이 좋아져도 구현 복잡도나 사용 오류 가능성은 남는다.'}</p>
       </div>
     </div>
   );
