@@ -453,11 +453,6 @@ const slides = [
     note: '두 알고리즘은 모두 flag와 turn을 쓰지만 Peterson은 더 짧고 직관적인 형태로 교육에서 자주 등장합니다.',
   },
   {
-    title: '현대 시스템의 대안',
-    body: <ModernAlternatives />,
-    note: '실제 Java에서는 synchronized, ReentrantLock, Semaphore, atomic 클래스 등을 사용합니다.',
-  },
-  {
     title: '최종 정리',
     body: <FinalSummary />,
     note: '마지막은 한 문장 암기형 답안으로 마무리합니다.',
@@ -477,6 +472,12 @@ function App() {
 
   const goPrev = () => setIndex((value) => Math.max(0, value - 1));
   const goNext = () => setIndex((value) => Math.min(slides.length - 1, value + 1));
+  const goToSlideFromProgress = (event) => {
+    const rect = event.currentTarget.getBoundingClientRect();
+    const ratio = (event.clientX - rect.left) / rect.width;
+    const nextIndex = Math.min(slides.length - 1, Math.max(0, Math.floor(ratio * slides.length)));
+    setIndex(nextIndex);
+  };
 
   const downloadPdf = useCallback(() => {
     setIsExportingPdf(true);
@@ -569,7 +570,17 @@ function App() {
         </section>
         <nav className={`controls ${isPresentation ? 'presentationControls' : ''} ${presentationControlsVisible ? 'visible' : ''}`} aria-label="slide navigation">
           <button onClick={goPrev} aria-label="previous slide"><ArrowLeft size={18} /></button>
-          <div className="progress"><span style={{ width: `${((index + 1) / slides.length) * 100}%` }} /></div>
+          <button
+            className="progress"
+            type="button"
+            onClick={goToSlideFromProgress}
+            aria-label="슬라이드 위치 선택"
+            aria-valuemin={1}
+            aria-valuemax={slides.length}
+            aria-valuenow={index + 1}
+          >
+            <span style={{ width: `${((index + 1) / slides.length) * 100}%` }} />
+          </button>
           <button onClick={goNext} aria-label="next slide"><ArrowRight size={18} /></button>
         </nav>
         <button
