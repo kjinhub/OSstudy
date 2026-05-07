@@ -540,9 +540,7 @@ function App() {
   }, []);
 
   useEffect(() => {
-    if (!isPresentation || !presentationControlsVisible) return undefined;
-    const timer = window.setTimeout(() => setPresentationControlsVisible(false), 2000);
-    return () => window.clearTimeout(timer);
+    if (isPresentation) setPresentationControlsVisible(true);
   }, [isPresentation, presentationControlsVisible, index]);
 
   return (

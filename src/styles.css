@@ -2894,8 +2894,8 @@ body {
 }
 
 .deck.presentation .slide {
-  width: min(100vw, 177.78vh);
-  height: min(56.25vw, 100vh);
+  width: min(100vw, calc((100vh - 84px) * 16 / 9));
+  height: min(calc(100vh - 84px), 56.25vw);
   max-width: none;
   max-height: none;
   border: 0;
@@ -3011,14 +3011,21 @@ body {
 .deck.presentation .controls {
   position: fixed;
   left: 50%;
-  bottom: 18px;
+  bottom: 12px;
   transform: translateX(-50%);
-  width: min(560px, 42vw);
-  z-index: 19;
-  opacity: 0;
-  pointer-events: none;
+  width: min(720px, 58vw);
+  z-index: 40;
+  opacity: 1;
+  pointer-events: auto;
   transition: opacity 0.2s ease;
   grid-template-columns: auto 1fr auto;
+  gap: 16px;
+  padding: 10px 14px;
+  border-radius: 999px;
+  background: rgba(17, 24, 39, 0.84);
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  box-shadow: 0 16px 38px rgba(0, 0, 0, 0.24);
+  backdrop-filter: blur(14px);
 }
 
 .deck.presentation .controls.visible {
@@ -3028,20 +3035,21 @@ body {
 
 .deck.presentation .controls .progress {
   height: 26px;
-  background: rgba(255, 255, 255, 0.24);
+  background: rgba(255, 255, 255, 0.28);
 }
 
 .deck.presentation .controls .progress span {
-  height: 5px;
+  height: 8px;
+  background: #3182f6;
 }
 
 .deck.presentation .controls button:not(.progress) {
-  width: 38px;
-  height: 38px;
+  width: 42px;
+  height: 42px;
   border: 0;
-  color: #ffffff;
-  background: rgba(255, 255, 255, 0.16);
-  backdrop-filter: blur(10px);
+  color: #1b64da;
+  background: rgba(255, 255, 255, 0.96);
+  box-shadow: 0 8px 18px rgba(0, 0, 0, 0.18);
 }
 
 .presentationPageBadge {
